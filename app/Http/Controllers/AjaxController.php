@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Redirect,Response;
 
 class AjaxController extends Controller
 {
@@ -13,6 +15,8 @@ class AjaxController extends Controller
      */
     public function index()
     {
+        $data['users'] = User::orderBy('id', 'desc')->paginate(5);
+        return view('ajax-crud', $data);
         //
     }
 
